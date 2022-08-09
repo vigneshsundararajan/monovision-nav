@@ -1,0 +1,32 @@
+<!-- Inser below any other node to run after the drivers  -->
+<!-- <node pkg="aut_sys" name="linefollower_node" type="line_follower.py" output="screen" />  -->
+<launch>
+
+<!-- <node pkg="aut_sys" name="distanceDriver" type="distanceDriver.py"/> -->
+<!-- <node pkg="aut_sys" name="lineDriver" type="lineDriver.py"/> -->
+<!-- <node pkg="aut_sys" name="servoDriver" type="servoDriver.py"/> -->
+<!-- <node pkg="aut_sys" name="uctronics" type="uctronics.py" output="screen" />  -->
+<node pkg="aut_sys" name="motorDriver" type="motorDriver.py"/>
+<node pkg="aut_sys" name="controller_node" type="fiducials.py" output="screen"/>
+
+<!-- Fiducials Initialiation -->
+<include file="$(find aruco_detect)/launch/aruco_detect.launch" />
+<!-- Raspicam node initialization -->
+<node type="raspicam_node" pkg="raspicam_node" name="raspicam_node" output="screen">
+    <param name="camera_frame_id" value="raspicam"/>
+    <param name="enable_raw" value="true"/>
+    <param name="enable_imv" value="false"/>
+    <param name="camera_id" value="0"/>
+
+    <param name="camera_info_url" value="package://raspicam_node/camera_info/camerav2_640x480.yaml"/>
+    <param name="camera_name" value="camerav2_640x480"/>
+    <param name="width" value="640"/>
+    <param name="height" value="480"/>
+
+    <param name="framerate" value="10"/>
+    <param name="exposure_mode" value="antishake"/>
+    <param name="shutter_speed" value="0"/>
+</node>
+
+
+</launch>

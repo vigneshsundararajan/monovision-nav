@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="aut_sys" name="motorDriver" type="motorDriver.py" output="screen" />
+    <node pkg="aut_sys" name="distanceDriver" type="distanceDriver.py" output="screen" />
+    <node name="pos_plot" pkg="rqt_plot" type="rqt_plot" args="/distance" />
+    <node name="pidcontrol_node" pkg="aut_sys" type="pid_controller.py" output="screen" />
+</launch>
